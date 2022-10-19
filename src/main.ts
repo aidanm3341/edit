@@ -1,14 +1,16 @@
 import { app, BrowserWindow } from 'electron';
-// import styles from 'styles.module.scss';
+import path = require('path');
 
 function createWindow(): void {
     const win = new BrowserWindow({
         width: 800,
         height: 700,
+        webPreferences: {
+            preload: path.join(__dirname, 'preload.js')
+        }
     });
 
     win.loadFile('../index.html');
-    // win.webContents.openDevTools();
 }
 
 app.whenReady().then(() => {
